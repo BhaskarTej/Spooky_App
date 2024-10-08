@@ -65,4 +65,25 @@ class _HalloweenGameState extends State<HalloweenGame> {
     _effectPlayer.dispose();
     super.dispose();
   }
+ // Function to randomize positions of spooky items
+  void _randomizePositions() {
+    setState(() {
+      final screenWidth = MediaQuery.of(context).size.width;
+      final screenHeight = MediaQuery.of(context).size.height;
 
+      _ghostPosition = Offset(
+        (Random().nextDouble() * (screenWidth - 100)), // Prevent overflow
+        (Random().nextDouble() * (screenHeight / 2)),
+      );
+
+      _pumpkinPosition = Offset(
+        (Random().nextDouble() * (screenWidth - 100)),
+        (Random().nextDouble() * (screenHeight / 2)),
+      );
+
+      _batPosition = Offset(
+        (Random().nextDouble() * (screenWidth - 100)),
+        (Random().nextDouble() * (screenHeight / 2)),
+      );
+    });
+  }
