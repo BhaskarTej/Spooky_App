@@ -141,3 +141,61 @@ class _HalloweenGameState extends State<HalloweenGame> {
       },
     );
   }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Spooky Halloween Game"),
+        backgroundColor: Colors.black,
+      ),
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/spooky_background.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Spooky Elements
+          Positioned(
+            top: _ghostPosition.dy,
+            left: _ghostPosition.dx,
+            child: GestureDetector(
+              onTap: _playTrapSound, // Trap item interaction
+              child: Image.asset(
+                'assets/images/ghost.png',
+                width: 80,
+                height: 80,
+              ),
+            ),
+          ),
+          Positioned(
+            top: _pumpkinPosition.dy,
+            left: _pumpkinPosition.dx,
+            child: GestureDetector(
+              onTap: _playSuccessSound, // Correct item interaction
+              child: Image.asset(
+                'assets/images/pumpkin.png',
+                width: 80,
+                height: 80,
+              ),
+            ),
+          ),
+          Positioned(
+            top: _batPosition.dy,
+            left: _batPosition.dx,
+            child: GestureDetector(
+              onTap: _playJumpScareEffect, // Jump scare item interaction
+              child: Image.asset(
+                'assets/images/bat.png',
+                width: 80,
+                height: 80,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
