@@ -87,3 +87,33 @@ class _HalloweenGameState extends State<HalloweenGame> {
       );
     });
   }
+// Function to play sound for trap items
+  void _playTrapSound() {
+    _effectPlayer.setAsset('assets/sounds/trap_sound.mp3').then(
+          (_) => _effectPlayer.play(),
+        );
+  }
+
+  // Function to play sound and show message when correct item is found
+  void _playSuccessSound() {
+    _effectPlayer.setAsset('assets/sounds/success_sound.mp3').then(
+          (_) => _effectPlayer.play(),
+        );
+
+    // Display success message
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("You Found It!"),
+          content: const Text("Congratulations! You've found the correct item."),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
