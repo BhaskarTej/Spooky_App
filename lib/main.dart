@@ -117,3 +117,27 @@ class _HalloweenGameState extends State<HalloweenGame> {
       },
     );
   }
+  // Function to play a jump scare effect
+  void _playJumpScareEffect() {
+    _effectPlayer.setAsset('assets/sounds/jump_scare.mp3').then((_) {
+      _effectPlayer.play();
+    });
+
+    // Show jump scare image
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.of(context).pop(true);
+        });
+
+        return Center(
+          child: Image.asset(
+            'assets/images/jump_scare.png', // Replace with your jump scare image
+            fit: BoxFit.cover,
+          ),
+        );
+      },
+    );
+  }
